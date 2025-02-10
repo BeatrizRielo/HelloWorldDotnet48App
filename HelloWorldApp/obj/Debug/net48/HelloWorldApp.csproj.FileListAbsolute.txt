@@ -1,0 +1,10 @@
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\bin\Debug\net48\HelloWorldApp.exe.config
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\bin\Debug\net48\HelloWorldApp.exe
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\bin\Debug\net48\HelloWorldApp.pdb
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.csproj.AssemblyReference.cache
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.AssemblyInfoInputs.cache
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.AssemblyInfo.cs
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.csproj.CoreCompileInputs.cache
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.exe
+C:\Users\anacosta\source\repo\vsa\HelloWorldApp\HelloWorldApp\obj\Debug\net48\HelloWorldApp.pdb
