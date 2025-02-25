@@ -29,7 +29,7 @@ stages:
         targetType: 'inline'
         script: |
           Copy-Item -Path "$(Build.SourcesDirectory)\**\bin\$(buildConfiguration)\*" -Destination "$(build.artifactStagingDirectory)" -Recurse
-    
+
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(build.artifactStagingDirectory)'
@@ -37,7 +37,7 @@ stages:
     
     - task: AzureWebApp@1
       inputs:
-        azureSubscription: '<Your Azure Subscription>'
+        azureSubscription: '3a5c82c1-2aa8-40ca-bcae-db34a0c93c42'
         appType: 'webApp'
         appName: 'acostaDotnet48'
         package: '$(build.artifactStagingDirectory)/**/*.zip'  
