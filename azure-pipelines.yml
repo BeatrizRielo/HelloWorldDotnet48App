@@ -1,36 +1,26 @@
-trigger:
-- main
- 
-pool:
-  vmImage: 'windows-latest'
- 
+trigger: none
+
 variables:
-  buildConfiguration: 'Release'
- 
-steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '4.8.x'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
-    includePreviewVersions: true
- 
-- task: NuGetToolInstaller@1
- 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
- 
-- task: VSBuild@1
-  inputs:
-    solution: '**/*.sln'
-    msbuildArgs: '/p:Configuration=$(buildConfiguration)'
-    platform: 'Any CPU'
-    configuration: '$(buildConfiguration)'
- 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Copy-Item -Path "$(Build.SourcesDirectory)\**\bin\$(buildConfiguration)\*" -Destination "$(build.artifactStagingDirectory)" -Recurse
- 
+  BuildPlatform: 'any cpu'
+  BuildConfiguration: 'release'
+
+stages:
+- stage: build
+  pool:
+    vmImage: 'windows-latest'
+  jobs:
+  - job: build
+    displayName: run build and test
+    steps:
+    - task: NuGetCommand@2
+      displayName: 'NuGet restore'
+      inputs:
+        restoreSolution: '**\*.sln'
+
+    - task: VSBuild@1
+      displayName: 'Build solution'
+      inputs:
+        solution: '**\*.sln'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\WebDeploy" /p:AutoParameterizationWebConfigConnectionStrings=false'
+        platform: '$(BuildPlatform)'
+        configuration: '$(BuildConfiguration)'
