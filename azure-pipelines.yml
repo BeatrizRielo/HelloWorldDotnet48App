@@ -24,10 +24,23 @@ stages:
         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\WebDeploy" /p:AutoParameterizationWebConfigConnectionStrings=false'
         platform: '$(BuildPlatform)'
         configuration: '$(BuildConfiguration)'
-
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact WebApp'
+    - task: PowerShell@2
       inputs:
-        PathtoPublish: '$(build.artifactstagingdirectory)/**/*.zip'
-        ArtifactName: WebApp
+        targetType: 'inline'
+        script: |
+          Copy-Item -Path "$(Build.SourcesDirectory)\**\bin\$(buildConfiguration)\*" -Destination "$(build.artifactStagingDirectory)" -Recurse
+    
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(build.artifactStagingDirectory)'
+        ArtifactName: 'drop'
+    
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: '<Your Azure Subscription>'
+        appType: 'webApp'
+        appName: 'acostaDotnet48'
+        package: '$(build.artifactStagingDirectory)/**/*.zip'  
+
+
    
